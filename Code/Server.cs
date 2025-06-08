@@ -9,6 +9,7 @@ using Opc.Ua;
 using Opc.Ua.Configuration;
 using Opc.Ua.Server;
 using System.Drawing;
+using System.Threading;
 
 
 namespace OPCplug.Code
@@ -24,8 +25,25 @@ namespace OPCplug.Code
         static bool AutoAcceptUntrustedCertificates;
         public string Id { get; } = Guid.NewGuid().ToString();
 
+        private CancellationTokenSource? _generador_Token;
+        private ApplicationInstance? _aplicacion;
+
+        
+        
+        public event EventHandler? Arrancar_Servidor;
+        public event EventHandler<Exception>? Error_Servidor;
+        public event EventHandler? Parar_Servidor;
+
+
+
+
         public async Task async_server()
         {
+
+            //Generamos el token de cancelacion de Task
+            _generador_Token = new CancellationTokenSource();
+            var token_cancelacion = _generador_Token.Token;
+
             try
             {
                 
@@ -92,14 +110,16 @@ namespace OPCplug.Code
                 await configuracion.Validate(ApplicationType.Server);
 
                 //Generamos la instancia de la aplicacion, aun no la ejecutamos
-                var aplicacion = new ApplicationInstance(configuracion);
+                _aplicacion = new ApplicationInstance(configuracion);
+
+                
 
                 // Aunque nos la sude los certificados de los clientes, porque para algo existe el firewall
                 // Si que "necesitamos", entre muchas comillas, el certificado del servidor para que los clientes puedan conectarse a el
                 // Porque quizas los clientes digan eS mAs fAcIl qUe mE cOnEcTe a El sErVeR cOn cErTiFiCaDo qUe SiN eL, y entonces no se podra conectar
                 //Generamos el certificado del servidor si no existe, o lo cargamos si ya existe
                 // El 'true' como primer argumento significa "crear si no existe". El '2048' es el tamaño de la clave.
-                bool certificateOK = await aplicacion.CheckApplicationInstanceCertificate(true, 2048);
+                bool certificateOK = await _aplicacion.CheckApplicationInstanceCertificate(true, 2048);
                 if (!certificateOK)
                 {
                     // Si por alguna razón no se puede crear o encontrar el certificado
@@ -113,15 +133,29 @@ namespace OPCplug.Code
                 // Ahora que tenemos todo configurado, iniciamos el servidor OPC UA
                 // 'StandardServer' es un metodo de la libreria
                 //Nos maneja todo, nodos, conexiones, seguridad, etc.
-                await aplicacion.Start(new StandardServer());
-                
-                Console.WriteLine($"Servidor '{aplicacion.ApplicationConfiguration.ApplicationName}' iniciado en '{aplicacion.ApplicationConfiguration.ServerConfiguration.BaseAddresses[0]}'");
-            
+                await _aplicacion.Start(new StandardServer());
+                Console.WriteLine($"Servidor '{_aplicacion.ApplicationConfiguration.ApplicationName}' iniciado en '{_aplicacion.ApplicationConfiguration.ServerConfiguration.BaseAddresses[0]}'");
+
+                //Evento de que el server esta corriendo
+                Arrancar_Servidor?.Invoke(this, EventArgs.Empty);
+
+                await Task.Delay(Timeout.Infinite, token_cancelacion);
+            }
+            catch (TaskCanceledException)
+            {
+                // Esta excepción es normal y esperada cuando se detiene el servidor.
+                // Simplemente informamos de que se ha detenido correctamente.
+                Console.WriteLine("El servidor OPC UA se ha detenido correctamente.");
+                //Asignamos ese token de cancelacion a la aplicacion para poder pararla
+                token_cancelacion.Register(() => _aplicacion.Stop());
             }
             catch (Exception ex)
             {
-                // --- BLOQUE DE DEBUG MEJORADO ---
-                // Este bloque nos dará la información exacta que necesitamos.
+                
+                //evento de que hay un error
+                Error_Servidor?.Invoke(this, ex);
+
+                
                 Console.WriteLine("\n>>>>> SE PRODUJO UNA EXCEPCIÓN AL INICIAR EL SERVIDOR <<<<<");
                 Console.WriteLine($"\nTipo de Excepción: {ex.GetType().FullName}");
                 Console.WriteLine($"\n**Mensaje Principal: {ex.Message}**");
@@ -132,7 +166,7 @@ namespace OPCplug.Code
                     Console.WriteLine($"\n**OPC UA StatusCode: {sre.StatusCode}**");
                 }
 
-                // A menudo, el error real está en la "excepción interna".
+                
                 if (ex.InnerException != null)
                 {
                     Console.WriteLine("\n--- Excepción Interna (la causa más probable) ---");
@@ -144,7 +178,29 @@ namespace OPCplug.Code
                 string errorMsg = $"Error al iniciar:\n{ex.Message}\n\n{(ex.InnerException != null ? ex.InnerException.Message : "")}";
                 MessageBox.Show(errorMsg, "Error de Servidor OPC", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+
+                // Este bloque se ejecuta siempre que el servidor se para, sea por stop o porque pete
+                Parar_Servidor?.Invoke(this, EventArgs.Empty);
+                // Limpiamos los recursos.
+                _generador_Token?.Dispose();
+                _generador_Token = null;
+                _aplicacion = null;
+            }
         }
+
+        public void Stop()
+        {
+            // Si el CancellationTokenSource existe y no se ha solicitado la cancelación todavía...
+            if (_generador_Token != null && !_generador_Token.IsCancellationRequested)
+            {
+                Console.WriteLine("Recibida solicitud para detener el servidor...");
+                // ...enviamos la señal de cancelación.
+                _generador_Token.Cancel();
+            }
+        }
+
 
         private void configurar_parametros_servidor()
         {

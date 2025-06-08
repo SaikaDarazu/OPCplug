@@ -73,6 +73,7 @@
             // 
             // run_server
             // 
+            run_server.BackColor = Color.LightGreen;
             run_server.Cursor = Cursors.Hand;
             run_server.Dock = DockStyle.Top;
             run_server.Location = new Point(5, 5);
@@ -80,7 +81,7 @@
             run_server.Size = new Size(190, 70);
             run_server.TabIndex = 1;
             run_server.Text = "Arrancar Server";
-            run_server.UseVisualStyleBackColor = true;
+            run_server.UseVisualStyleBackColor = false;
             run_server.Click += run_server_click;
             // 
             // Form1
