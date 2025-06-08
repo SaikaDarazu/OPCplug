@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Documentos\\MicrosoftSource\\repos\\OPCplug\\OPCplug.csproj": {}
+    "D:\\OneDrive - SCIO Group\\Documentos\\03_Personal\\Repositorio\\OPCplug\\OPCplug.csproj": {}
   },
   "projects": {
-    "F:\\Documentos\\MicrosoftSource\\repos\\OPCplug\\OPCplug.csproj": {
+    "D:\\OneDrive - SCIO Group\\Documentos\\03_Personal\\Repositorio\\OPCplug\\OPCplug.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Documentos\\MicrosoftSource\\repos\\OPCplug\\OPCplug.csproj",
+        "projectUniqueName": "D:\\OneDrive - SCIO Group\\Documentos\\03_Personal\\Repositorio\\OPCplug\\OPCplug.csproj",
         "projectName": "OPCplug",
-        "projectPath": "F:\\Documentos\\MicrosoftSource\\repos\\OPCplug\\OPCplug.csproj",
-        "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
-        "outputPath": "F:\\Documentos\\MicrosoftSource\\repos\\OPCplug\\obj\\",
+        "projectPath": "D:\\OneDrive - SCIO Group\\Documentos\\03_Personal\\Repositorio\\OPCplug\\OPCplug.csproj",
+        "packagesPath": "C:\\Users\\Fernando.Delafuente\\.nuget\\packages\\",
+        "outputPath": "D:\\OneDrive - SCIO Group\\Documentos\\03_Personal\\Repositorio\\OPCplug\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Fernando.Delafuente\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -42,9 +42,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -52,7 +52,7 @@
           "dependencies": {
             "OPCFoundation.NetStandard.Opc.Ua": {
               "target": "Package",
-              "version": "[1.5.375.457, )"
+              "version": "[1.5.376.213, )"
             }
           },
           "imports": [
@@ -66,33 +66,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.11, 8.0.11]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.11, 8.0.11]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.11, 8.0.11]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.11, 8.0.11]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             },
-            "Microsoft.WindowsDesktop.App.WPF": {
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

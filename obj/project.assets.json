@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
-      "BouncyCastle.Cryptography/2.5.0": {
+      "BouncyCastle.Cryptography/2.5.1": {
         "type": "package",
         "compile": {
           "lib/net6.0/BouncyCastle.Cryptography.dll": {
@@ -63,23 +63,23 @@
           }
         }
       },
-      "OPCFoundation.NetStandard.Opc.Ua/1.5.375.457": {
+      "OPCFoundation.NetStandard.Opc.Ua/1.5.376.213": {
         "type": "package",
         "dependencies": {
-          "OPCFoundation.NetStandard.Opc.Ua.Client": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Configuration": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Gds.Client.Common": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Gds.Server.Common": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Security.Certificates": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Server": "1.5.375.457"
+          "OPCFoundation.NetStandard.Opc.Ua.Client": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Configuration": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Gds.Client.Common": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Gds.Server.Common": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Security.Certificates": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Server": "1.5.376.213"
         }
       },
-      "OPCFoundation.NetStandard.Opc.Ua.Client/1.5.375.457": {
+      "OPCFoundation.NetStandard.Opc.Ua.Client/1.5.376.213": {
         "type": "package",
         "dependencies": {
-          "OPCFoundation.NetStandard.Opc.Ua.Configuration": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.375.457"
+          "OPCFoundation.NetStandard.Opc.Ua.Configuration": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.376.213"
         },
         "compile": {
           "lib/net8.0/Opc.Ua.Client.dll": {
@@ -92,10 +92,10 @@
           }
         }
       },
-      "OPCFoundation.NetStandard.Opc.Ua.Configuration/1.5.375.457": {
+      "OPCFoundation.NetStandard.Opc.Ua.Configuration/1.5.376.213": {
         "type": "package",
         "dependencies": {
-          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.375.457"
+          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.376.213"
         },
         "compile": {
           "lib/net8.0/Opc.Ua.Configuration.dll": {
@@ -108,12 +108,12 @@
           }
         }
       },
-      "OPCFoundation.NetStandard.Opc.Ua.Core/1.5.375.457": {
+      "OPCFoundation.NetStandard.Opc.Ua.Core/1.5.376.213": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
           "Newtonsoft.Json": "13.0.3",
-          "OPCFoundation.NetStandard.Opc.Ua.Security.Certificates": "1.5.375.457"
+          "OPCFoundation.NetStandard.Opc.Ua.Security.Certificates": "1.5.376.213"
         },
         "compile": {
           "lib/net8.0/Opc.Ua.Core.dll": {
@@ -126,11 +126,11 @@
           }
         }
       },
-      "OPCFoundation.NetStandard.Opc.Ua.Gds.Client.Common/1.5.375.457": {
+      "OPCFoundation.NetStandard.Opc.Ua.Gds.Client.Common/1.5.376.213": {
         "type": "package",
         "dependencies": {
-          "OPCFoundation.NetStandard.Opc.Ua.Client": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.375.457"
+          "OPCFoundation.NetStandard.Opc.Ua.Client": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.376.213"
         },
         "compile": {
           "lib/net8.0/Opc.Ua.Gds.Client.Common.dll": {
@@ -143,12 +143,12 @@
           }
         }
       },
-      "OPCFoundation.NetStandard.Opc.Ua.Gds.Server.Common/1.5.375.457": {
+      "OPCFoundation.NetStandard.Opc.Ua.Gds.Server.Common/1.5.376.213": {
         "type": "package",
         "dependencies": {
-          "BouncyCastle.Cryptography": "2.5.0",
-          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Server": "1.5.375.457"
+          "BouncyCastle.Cryptography": "2.5.1",
+          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Server": "1.5.376.213"
         },
         "compile": {
           "lib/net8.0/Opc.Ua.Gds.Server.Common.dll": {
@@ -161,7 +161,7 @@
           }
         }
       },
-      "OPCFoundation.NetStandard.Opc.Ua.Security.Certificates/1.5.375.457": {
+      "OPCFoundation.NetStandard.Opc.Ua.Security.Certificates/1.5.376.213": {
         "type": "package",
         "dependencies": {
           "System.Formats.Asn1": "8.0.1"
@@ -177,11 +177,11 @@
           }
         }
       },
-      "OPCFoundation.NetStandard.Opc.Ua.Server/1.5.375.457": {
+      "OPCFoundation.NetStandard.Opc.Ua.Server/1.5.376.213": {
         "type": "package",
         "dependencies": {
-          "OPCFoundation.NetStandard.Opc.Ua.Configuration": "1.5.375.457",
-          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.375.457"
+          "OPCFoundation.NetStandard.Opc.Ua.Configuration": "1.5.376.213",
+          "OPCFoundation.NetStandard.Opc.Ua.Core": "1.5.376.213"
         },
         "compile": {
           "lib/net8.0/Opc.Ua.Server.dll": {
@@ -213,16 +213,16 @@
     }
   },
   "libraries": {
-    "BouncyCastle.Cryptography/2.5.0": {
-      "sha512": "rc7vRCq/KD3GtIwSgRtjanGaBwTb9nLenFDZnEcauWlssuuEoxcbMfWA3QWWho6QDMSOSkWjs657McdHzEtEcw==",
+    "BouncyCastle.Cryptography/2.5.1": {
+      "sha512": "zy8TMeTP+1FH2NrLaNZtdRbBdq7u5MI+NFZQOBSM69u5RFkciinwzV2eveY6Kjf5MzgsYvvl6kTStsj3JrXqkg==",
       "type": "package",
-      "path": "bouncycastle.cryptography/2.5.0",
+      "path": "bouncycastle.cryptography/2.5.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "README.md",
-        "bouncycastle.cryptography.2.5.0.nupkg.sha512",
+        "bouncycastle.cryptography.2.5.1.nupkg.sha512",
         "bouncycastle.cryptography.nuspec",
         "lib/net461/BouncyCastle.Cryptography.dll",
         "lib/net461/BouncyCastle.Cryptography.xml",
@@ -368,24 +368,24 @@
         "packageIcon.png"
       ]
     },
-    "OPCFoundation.NetStandard.Opc.Ua/1.5.375.457": {
-      "sha512": "7fB7NKFGrIyeFMZBzv9vR11L/GltaX2KedEEMkqg9oUhpVXTULSUUyj6y8MDQj84t9yVaE9lzrgYw+tXZr2AKA==",
+    "OPCFoundation.NetStandard.Opc.Ua/1.5.376.213": {
+      "sha512": "kbebNbhWZsLn+IWYqOjJpRaWXejPFAzsQFMs1Xq+iippZg9ski0nqI5me3XVN3ci685cAaYPmA4eD/d965GGwg==",
       "type": "package",
-      "path": "opcfoundation.netstandard.opc.ua/1.5.375.457",
+      "path": "opcfoundation.netstandard.opc.ua/1.5.376.213",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "images/logo.jpg",
         "licenses/LICENSE.txt",
-        "opcfoundation.netstandard.opc.ua.1.5.375.457.nupkg.sha512",
+        "opcfoundation.netstandard.opc.ua.1.5.376.213.nupkg.sha512",
         "opcfoundation.netstandard.opc.ua.nuspec"
       ]
     },
-    "OPCFoundation.NetStandard.Opc.Ua.Client/1.5.375.457": {
-      "sha512": "wzc7Jx7GVnxM3lPQpZaU4C+u13Jm5Rg/DRGdTJIFQCTW8M6C8J0CNU2f+9wcY4ajGYhD/cbBGy9tIIwf8hPpGA==",
+    "OPCFoundation.NetStandard.Opc.Ua.Client/1.5.376.213": {
+      "sha512": "EBMWt8zVF03kAtk/3Blt2vanAmQD78jv4NM7Rdt1RV9zzk+ILDskMcUJ8+P46cXl1ADFomYGu5mOBMyCEGp+Kw==",
       "type": "package",
-      "path": "opcfoundation.netstandard.opc.ua.client/1.5.375.457",
+      "path": "opcfoundation.netstandard.opc.ua.client/1.5.376.213",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -406,14 +406,14 @@
         "lib/netstandard2.0/Opc.Ua.Client.xml",
         "lib/netstandard2.1/Opc.Ua.Client.dll",
         "lib/netstandard2.1/Opc.Ua.Client.xml",
-        "opcfoundation.netstandard.opc.ua.client.1.5.375.457.nupkg.sha512",
+        "opcfoundation.netstandard.opc.ua.client.1.5.376.213.nupkg.sha512",
         "opcfoundation.netstandard.opc.ua.client.nuspec"
       ]
     },
-    "OPCFoundation.NetStandard.Opc.Ua.Configuration/1.5.375.457": {
-      "sha512": "i+iFqjSwPMOQ5g1yJVMMXVLG54lsVUj7HPqbRAQxdm04UZ8uGNt59aF9BpkcBpYzNXSHoVUocZfuVeAcUCIj+A==",
+    "OPCFoundation.NetStandard.Opc.Ua.Configuration/1.5.376.213": {
+      "sha512": "3DhXapPk+sKl/zPXmF/9a26389qR22T4OVp9D0PunpoTLcg03gNnm1yBHpVzpDTXMUrnXg8Ibw61pavtaPGadA==",
       "type": "package",
-      "path": "opcfoundation.netstandard.opc.ua.configuration/1.5.375.457",
+      "path": "opcfoundation.netstandard.opc.ua.configuration/1.5.376.213",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -434,14 +434,14 @@
         "lib/netstandard2.0/Opc.Ua.Configuration.xml",
         "lib/netstandard2.1/Opc.Ua.Configuration.dll",
         "lib/netstandard2.1/Opc.Ua.Configuration.xml",
-        "opcfoundation.netstandard.opc.ua.configuration.1.5.375.457.nupkg.sha512",
+        "opcfoundation.netstandard.opc.ua.configuration.1.5.376.213.nupkg.sha512",
         "opcfoundation.netstandard.opc.ua.configuration.nuspec"
       ]
     },
-    "OPCFoundation.NetStandard.Opc.Ua.Core/1.5.375.457": {
-      "sha512": "u9aLQBTgZv1T4i2z/AXrAlfALIEG4DUHnIlDTzQox0aJ2pWSm4uyJBMZs/90AFveLHvtrHYU2iozNzYWP0Sopg==",
+    "OPCFoundation.NetStandard.Opc.Ua.Core/1.5.376.213": {
+      "sha512": "EwVkT8rIBz06PCRsagS8weQLwho7a4xP1w8Ac2NXrC5QfKhcuIAbCywHir6fw3FH0DCLGzblY3MoS/a8PzviZA==",
       "type": "package",
-      "path": "opcfoundation.netstandard.opc.ua.core/1.5.375.457",
+      "path": "opcfoundation.netstandard.opc.ua.core/1.5.376.213",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -462,14 +462,14 @@
         "lib/netstandard2.1/Opc.Ua.Core.dll",
         "lib/netstandard2.1/Opc.Ua.Core.xml",
         "licenses/LICENSE.txt",
-        "opcfoundation.netstandard.opc.ua.core.1.5.375.457.nupkg.sha512",
+        "opcfoundation.netstandard.opc.ua.core.1.5.376.213.nupkg.sha512",
         "opcfoundation.netstandard.opc.ua.core.nuspec"
       ]
     },
-    "OPCFoundation.NetStandard.Opc.Ua.Gds.Client.Common/1.5.375.457": {
-      "sha512": "ffAdZvbRIsbK53lMAsThizJfKdFmoINn8cCAxXMJm2e0D+mcOZKPRmXSZD62jaz1zwKoXclf6NmMLyeTRv9jqw==",
+    "OPCFoundation.NetStandard.Opc.Ua.Gds.Client.Common/1.5.376.213": {
+      "sha512": "GgrJsD7gbB8WDT7R5ZFv0PCvVobBGbWB0qaVPRnJrmQou0HasFvrWHB91O2GwSE9vxLEaEMdgz/Tn9y+52OLYA==",
       "type": "package",
-      "path": "opcfoundation.netstandard.opc.ua.gds.client.common/1.5.375.457",
+      "path": "opcfoundation.netstandard.opc.ua.gds.client.common/1.5.376.213",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -490,14 +490,14 @@
         "lib/netstandard2.0/Opc.Ua.Gds.Client.Common.xml",
         "lib/netstandard2.1/Opc.Ua.Gds.Client.Common.dll",
         "lib/netstandard2.1/Opc.Ua.Gds.Client.Common.xml",
-        "opcfoundation.netstandard.opc.ua.gds.client.common.1.5.375.457.nupkg.sha512",
+        "opcfoundation.netstandard.opc.ua.gds.client.common.1.5.376.213.nupkg.sha512",
         "opcfoundation.netstandard.opc.ua.gds.client.common.nuspec"
       ]
     },
-    "OPCFoundation.NetStandard.Opc.Ua.Gds.Server.Common/1.5.375.457": {
-      "sha512": "DjyQOZgZKjpFTnh6aF5P9oYeZ7VzQvXoLSbuYwoU/RNpkbAUJdTw0KJ3g/szbE7zVQNEJKgme0Uv5uBrWEvPTg==",
+    "OPCFoundation.NetStandard.Opc.Ua.Gds.Server.Common/1.5.376.213": {
+      "sha512": "/OCVMzXApttM2TTacr19cT3LcUgYIeOgeQjgEdUeughjtDGRjj5ko6fTB/c4ddpVNxVbRXq9EZVhPlrU5b+cxg==",
       "type": "package",
-      "path": "opcfoundation.netstandard.opc.ua.gds.server.common/1.5.375.457",
+      "path": "opcfoundation.netstandard.opc.ua.gds.server.common/1.5.376.213",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -518,14 +518,14 @@
         "lib/netstandard2.0/Opc.Ua.Gds.Server.Common.xml",
         "lib/netstandard2.1/Opc.Ua.Gds.Server.Common.dll",
         "lib/netstandard2.1/Opc.Ua.Gds.Server.Common.xml",
-        "opcfoundation.netstandard.opc.ua.gds.server.common.1.5.375.457.nupkg.sha512",
+        "opcfoundation.netstandard.opc.ua.gds.server.common.1.5.376.213.nupkg.sha512",
         "opcfoundation.netstandard.opc.ua.gds.server.common.nuspec"
       ]
     },
-    "OPCFoundation.NetStandard.Opc.Ua.Security.Certificates/1.5.375.457": {
-      "sha512": "+kYvuS99heA4bJxtRyBqwlW2EfVuqK5e1wKG9tMP2QaEqRVJpc2L6smueDcyT04NgWMIdnQvWTiLhazoZi4ZHQ==",
+    "OPCFoundation.NetStandard.Opc.Ua.Security.Certificates/1.5.376.213": {
+      "sha512": "TtmmV+38TIbbSF74ZAyC24KoTbeTx6gED59yYyUcfhaLF8Bozh54jZxQ0LjcMo/HcwUQMmKQ+LW2bCiZIVnIOA==",
       "type": "package",
-      "path": "opcfoundation.netstandard.opc.ua.security.certificates/1.5.375.457",
+      "path": "opcfoundation.netstandard.opc.ua.security.certificates/1.5.376.213",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -546,14 +546,14 @@
         "lib/netstandard2.0/Opc.Ua.Security.Certificates.xml",
         "lib/netstandard2.1/Opc.Ua.Security.Certificates.dll",
         "lib/netstandard2.1/Opc.Ua.Security.Certificates.xml",
-        "opcfoundation.netstandard.opc.ua.security.certificates.1.5.375.457.nupkg.sha512",
+        "opcfoundation.netstandard.opc.ua.security.certificates.1.5.376.213.nupkg.sha512",
         "opcfoundation.netstandard.opc.ua.security.certificates.nuspec"
       ]
     },
-    "OPCFoundation.NetStandard.Opc.Ua.Server/1.5.375.457": {
-      "sha512": "uwkEafCNtcR352qxo8zSbHkkkHpf5Iqg/b4H2bF0k2U45qP+LCipoT+v7vxnoaJ05boCLyxmBcPrdEFDpOrWFg==",
+    "OPCFoundation.NetStandard.Opc.Ua.Server/1.5.376.213": {
+      "sha512": "jwJ32RICect7TtHSAITlYwl5YSC83H6aEEBDTog7UNcxJwL8GLY5oDrPqziGZgp9uSsjST7XqZVTMIGLRKXRpw==",
       "type": "package",
-      "path": "opcfoundation.netstandard.opc.ua.server/1.5.375.457",
+      "path": "opcfoundation.netstandard.opc.ua.server/1.5.376.213",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -574,7 +574,7 @@
         "lib/netstandard2.0/Opc.Ua.Server.xml",
         "lib/netstandard2.1/Opc.Ua.Server.dll",
         "lib/netstandard2.1/Opc.Ua.Server.xml",
-        "opcfoundation.netstandard.opc.ua.server.1.5.375.457.nupkg.sha512",
+        "opcfoundation.netstandard.opc.ua.server.1.5.376.213.nupkg.sha512",
         "opcfoundation.netstandard.opc.ua.server.nuspec"
       ]
     },
@@ -610,27 +610,27 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "OPCFoundation.NetStandard.Opc.Ua >= 1.5.375.457"
+      "OPCFoundation.NetStandard.Opc.Ua >= 1.5.376.213"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ferna\\.nuget\\packages\\": {},
-    "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Fernando.Delafuente\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Documentos\\MicrosoftSource\\repos\\OPCplug\\OPCplug.csproj",
+      "projectUniqueName": "D:\\OneDrive - SCIO Group\\Documentos\\03_Personal\\Repositorio\\OPCplug\\OPCplug.csproj",
       "projectName": "OPCplug",
-      "projectPath": "F:\\Documentos\\MicrosoftSource\\repos\\OPCplug\\OPCplug.csproj",
-      "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
-      "outputPath": "F:\\Documentos\\MicrosoftSource\\repos\\OPCplug\\obj\\",
+      "projectPath": "D:\\OneDrive - SCIO Group\\Documentos\\03_Personal\\Repositorio\\OPCplug\\OPCplug.csproj",
+      "packagesPath": "C:\\Users\\Fernando.Delafuente\\.nuget\\packages\\",
+      "outputPath": "D:\\OneDrive - SCIO Group\\Documentos\\03_Personal\\Repositorio\\OPCplug\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Fernando.Delafuente\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -655,9 +655,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -665,7 +665,7 @@
         "dependencies": {
           "OPCFoundation.NetStandard.Opc.Ua": {
             "target": "Package",
-            "version": "[1.5.375.457, )"
+            "version": "[1.5.376.213, )"
           }
         },
         "imports": [
@@ -679,33 +679,15 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.11, 8.0.11]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.11, 8.0.11]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.11, 8.0.11]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.11, 8.0.11]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           },
-          "Microsoft.WindowsDesktop.App.WPF": {
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
