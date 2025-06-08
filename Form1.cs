@@ -5,6 +5,7 @@ namespace OPCplug
 {
     public partial class Form1 : Form
     {
+        Server? servidor;
         public Form1()
         {
             InitializeComponent();
@@ -30,7 +31,18 @@ namespace OPCplug
 
         private void run_server_click(object sender, EventArgs e)
         {
-            Server servidor = new Server();
+            if (servidor != null)
+            {
+                 MessageBox.Show
+                    (
+                         $"El servidor ya está en ejecución.",
+                         $"Servidor ID: {servidor?.Id}",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Information
+                    );
+                return;
+            }
+            servidor = new Server();
             Task.Run(() => servidor.async_server());
         }
     }

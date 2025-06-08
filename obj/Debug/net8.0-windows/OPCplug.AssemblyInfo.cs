@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OPCplug")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c255d9f86e834ee2762c1355ee1ab32bc1d3bf39")]
 [assembly: System.Reflection.AssemblyProductAttribute("OPCplug")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OPCplug")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

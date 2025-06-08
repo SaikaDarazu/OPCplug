@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,7 +54,29 @@ namespace OPCplug.Code
                 // Crear archivo de configuración XML si no existe
                 if (!File.Exists(ruta_xml))
                 {
-                    string contenidoXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Configuracion>\n  <Servidor>OPCplug</Servidor>\n</Configuracion>";
+                    string nombre_equipo = Environment.MachineName; 
+                    string contenidoXml = $@"<?xml version=""1.0"" encoding=""utf-8"" ?>
+                                            <!-- Archivo de configuración para el Servidor OPC UA -->
+                                            <OpcUaConfig>
+  
+                                              <!-- Identificación de la aplicación. Esencial para que los clientes reconozcan el servidor. -->
+                                              <ApplicationName>MiServidorOPC</ApplicationName>
+                                              <ApplicationUri>urn:{nombre_equipo}:SaikaDarazu:MiServidorOPC</ApplicationUri>
+                                              <ProductUri>urn:SaikaDarazu:MiServidorOPC</ProductUri>
+  
+                                              <!-- Endpoint (Punto de conexión) principal del servidor. -->
+                                              <ServerUrl>opc.tcp://{nombre_equipo}:4840/MiServidorOPC</ServerUrl>
+  
+                                              <!-- Configuración de seguridad -->
+                                              <Security>
+                                                <!-- Políticas de seguridad soportadas. Opciones: None, Sign, SignAndEncrypt -->
+                                                <Policy>None</Policy>
+    
+                                                <!-- Aceptar certificados de cliente no confiables automáticamente (solo para desarrollo). -->
+                                                <AutoAcceptUntrustedCertificates>true</AutoAcceptUntrustedCertificates>
+                                              </Security>
+  
+                                            </OpcUaConfig>";
                     File.WriteAllText(ruta_xml, contenidoXml);
                 }
 
