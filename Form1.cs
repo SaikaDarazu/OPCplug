@@ -1,4 +1,5 @@
 using OPCplug.Code;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OPCplug
@@ -6,6 +7,12 @@ namespace OPCplug
     public partial class Form1 : Form
     {
         Server? servidor;
+        Form? ventana_clientes;
+        Clientes clientes;
+
+        private System.Windows.Forms.Timer? uiUpdateTimer;
+        private RichTextBox? infoBoxClientes;
+
         public Form1()
         {
             InitializeComponent();
@@ -31,36 +38,40 @@ namespace OPCplug
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-                servidor?.Stop();
+            servidor?.Stop();
+            clientes?.Stop();
         }
 
-        private void run_server_click(object sender, EventArgs e)
+        private void Run_server_click(object sender, EventArgs e)
         {
-            this.run_server.Enabled = false;
+            this.Run_server.Enabled = false;
 
             if (servidor != null)
             {
-                // El servidor está en marcha, así que lo detenemos.
-                this.run_server.Text = "Deteniendo...";
-                this.run_server.Refresh();
+                // Paramos el server
+                this.Run_server.Text = "Deteniendo...";
+                this.Run_server.Refresh();
                 Task.Run(() => servidor.Stop());
             }
             else
             {
-                // El servidor está detenido, así que lo iniciamos.
-                this.run_server.Text = "Arrancando...";
-                servidor = new OPCplug.Code.Server();
+                // arrancamos el server
+                this.Run_server.Text = "Arrancando...";
+                servidor = new Server();
 
-                // Eventos
+                // Eventos para escuchar lo que hace el server en su Task
                 servidor.Arrancar_Servidor += Servidor_Arrancar_Servidor;
                 servidor.Parar_Servidor += Servidor_Parar_Servidor;
                 servidor.Error_Servidor += Error_Servidor;
+
+                //Esto aunque ya ocurre en el hilo del servidor, lo hacemos en un Task otra vez para evitar bloqueos
+                //Porque ha veces petaba el hilo del server y no ejecutaba correctamente el reseteo del botón.
 
                 Task.Run(() =>
                 {
                     try
                     {
-                        servidor.async_server();
+                        servidor.Async_server();
                     }
                     catch (Exception ex)
                     {
@@ -71,24 +82,142 @@ namespace OPCplug
             }
         }
 
-        // --- MANEJADORES DE EVENTOS ---
+        private void Run_clientes_Click(object sender, EventArgs e)
+        {
+            this.Run_clientes.Enabled = false;
 
-        // Este método se ejecutará CUANDO el servidor arranque con éxito.
+            if (clientes != null)
+            {
+                // Paramos el server
+                this.Run_clientes.Text = "Deteniendo...";
+                this.Run_clientes.Refresh();
+                Task.Run(() => clientes.Stop());
+            }
+            else
+            {
+                // arrancamos el server
+                this.Run_clientes.Text = "Arrancando...";
+                clientes = new Clientes();
+
+                ventana_clientes = MostrarInformacionClientes(clientes);
+                if (ventana_clientes != null)
+                {
+                    ventana_clientes.FormClosing += Cerrar_ventana_clientes;
+                }
+
+                
+                uiUpdateTimer = new System.Windows.Forms.Timer();
+                uiUpdateTimer.Interval = 100; // Refrescar cada segundo
+                uiUpdateTimer.Tick += UpdateClientInfoWindow;
+                uiUpdateTimer.Start();
+
+                // Eventos para escuchar lo que hace el server en su Task
+                clientes.Arrancar_Clientes += Clientes_Arrancar;
+                clientes.Parar_Clientes += Clientes_Parar;
+                clientes.Error_Clientes += Error_Clientes;
+
+                //Esto aunque ya ocurre en el hilo del servidor, lo hacemos en un Task otra vez para evitar bloqueos
+                //Porque ha veces petaba el hilo del server y no ejecutaba correctamente el reseteo del botón.
+
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        clientes.Async_clientes();
+                    }
+                    catch (Exception ex)
+                    {
+                        Error_Clientes(this, ex);
+                    }
+                });
+
+            }
+        }
+
+        private void UpdateClientInfoWindow(object? sender, EventArgs e)
+        {
+            // Si el gestor de clientes o la caja de texto no existen, no hacemos nada
+            if (clientes == null || infoBoxClientes == null || infoBoxClientes.IsDisposed)
+            {
+                uiUpdateTimer?.Stop();
+                return;
+            }
+
+            var sb = new StringBuilder();
+            sb.AppendLine($"Se han cargado {clientes.Lista_clientes_UI.Count} clientes (actualizado en tiempo real):\n");
+
+            // Usamos la Lista_clientes_UI porque es la que contiene la copia de los datos
+            // que se actualiza en el evento OnNotification
+            foreach (var cliente in clientes.Lista_clientes_lectura) // Leemos la lista de lectura que tiene los datos reales
+            {
+                sb.AppendLine($"--- Cliente: {cliente.Nombre} ---");
+                sb.AppendLine($"URL: {cliente.EndpointURL}");
+                sb.AppendLine("Nodos y Valores:");
+                if (cliente.Nodos.Any())
+                {
+                    foreach (var nodo in cliente.Nodos)
+                    {
+                        // Mostramos el valor del nodo. Si es null, mostramos "(esperando...)"
+                        string valorMostrado = nodo.Valor?.ToString() ?? "(esperando...)";
+                        sb.AppendLine($"  - {nodo.Nodo_nombre}: {valorMostrado}  (ID: {nodo.Nodo_id})");
+                    }
+                }
+                else { sb.AppendLine("  (No se han definido nodos)"); }
+                sb.AppendLine();
+            }
+
+            // Actualizamos el texto en el hilo de la UI
+            if (infoBoxClientes.IsHandleCreated)
+            {
+                infoBoxClientes.Invoke((MethodInvoker)delegate {
+                    infoBoxClientes.Text = sb.ToString();
+                });
+            }
+        }
+
+        private Form MostrarInformacionClientes(Clientes clientesManager)
+        {
+            Form infoForm = new Form { /* ... config ... */ };
+
+            // Creamos el RichTextBox y lo guardamos en nuestra variable de clase
+            infoBoxClientes = new RichTextBox
+            {
+                Dock = DockStyle.Fill,
+                ReadOnly = true,
+                Font = new Font("Consolas", 10),
+                WordWrap = false
+            };
+
+            infoForm.Controls.Add(infoBoxClientes);
+
+            // Realizamos la primera actualización de la UI
+            UpdateClientInfoWindow(null, EventArgs.Empty);
+
+            infoForm.Show();
+            return infoForm;
+        }
+        private void Cerrar_ventana_clientes(object? sender, FormClosingEventArgs e)
+        {
+            clientes?.Stop();
+        }
+        // --- EVENTOS SERVER ---
+        // Aviso de que el server ha arrancado
         private void Servidor_Arrancar_Servidor(object? sender, EventArgs e)
         {
             // Usamos Invoke para asegurarnos de que el código se ejecuta en el hilo de la UI.
-            this.Invoke((MethodInvoker)delegate {
-                this.run_server.Text = "Detener Servidor";
-                this.run_server.BackColor = Color.Salmon;
-                this.run_server.Enabled = true; // Reactiva el botón.
+            this.Invoke((MethodInvoker)delegate
+            {
+                this.Run_server.Text = "Detener Servidor";
+                this.Run_server.BackColor = Color.Salmon;
+                this.Run_server.Enabled = true; // Reactiva el botón.
             });
         }
-
-        // Este método se ejecutará CUANDO la tarea del servidor se detenga (ya sea por éxito o por error).
+        // Aviso de que el server ha parado
         private void Servidor_Parar_Servidor(object? sender, EventArgs e)
         {
-            this.Invoke((MethodInvoker)delegate {
-                // Desuscribe los eventos para evitar fugas de memoria.
+            this.Invoke((MethodInvoker)delegate
+            {
+                // eliminamos los eventos para evitar fugas de memoria.
                 if (servidor != null)
                 {
                     servidor.Arrancar_Servidor -= Servidor_Arrancar_Servidor;
@@ -97,16 +226,16 @@ namespace OPCplug
                 }
 
                 servidor = null; // Marca el servidor como detenido.
-                this.run_server.Text = "Arrancar Servidor";
-                this.run_server.BackColor = Color.LightGreen;
-                this.run_server.Enabled = true; // Reactiva el botón.
+                this.Run_server.Text = "Arrancar Servidor";
+                this.Run_server.BackColor = Color.LightGreen;
+                this.Run_server.Enabled = true; // Reactiva el botón.
             });
         }
-
-        // Este método se ejecutará SI el servidor falla al arrancar.
+        // Aviso de que el server ha petado
         private void Error_Servidor(object? sender, Exception ex)
         {
-            this.Invoke((MethodInvoker)delegate {
+            this.Invoke((MethodInvoker)delegate
+            {
                 MessageBox.Show($"Error crítico al iniciar el servidor:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 if (servidor != null)
@@ -117,19 +246,72 @@ namespace OPCplug
                     servidor = null;
                 }
 
-                this.run_server.Text = "Arrancar Servidor";
-                this.run_server.BackColor = Color.LightGreen;
-                this.run_server.Enabled = true;
+                this.Run_server.Text = "Arrancar Servidor";
+                this.Run_server.BackColor = Color.LightGreen;
+                this.Run_server.Enabled = true;
             });
         }
 
+        // --- EVENTOS CLIENTE ---
+        private void Clientes_Arrancar(object? sender, EventArgs e)
+        {
+            // Usamos Invoke para asegurarnos de que el código se ejecuta en el hilo de la UI.
+            this.Invoke((MethodInvoker)delegate
+            {
+                this.Run_clientes.Text = "Detener Lectura Clientes";
+                this.Run_clientes.BackColor = Color.Salmon;
+                this.Run_clientes.Enabled = true; // Reactiva el botón.
+            });
+        }
+        // Aviso de que el server ha parado
+        private void Clientes_Parar(object? sender, EventArgs e)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                // eliminamos los eventos para evitar fugas de memoria.
+                if (clientes != null)
+                {
+                    clientes.Arrancar_Clientes -= Clientes_Arrancar;
+                    clientes.Parar_Clientes -= Clientes_Parar;
+                    clientes.Error_Clientes -= Error_Clientes;
+                }
+                if (ventana_clientes != null && !ventana_clientes.IsDisposed)
+                {
+                    // Nos desuscribimos del evento para evitar que se llame a Stop() de nuevo.
+                    ventana_clientes.FormClosing -= Cerrar_ventana_clientes;
+                    ventana_clientes.Close();
+                }
+                clientes = null; // Marca el servidor como detenido.
+                this.Run_clientes.Text = "Arrancar Lectura Clientes";
+                this.Run_clientes.BackColor = Color.LightGreen;
+                this.Run_clientes.Enabled = true; // Reactiva el botón.
+            });
+        }
+        // Aviso de que el server ha petado
+        private void Error_Clientes(object? sender, Exception ex)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                MessageBox.Show($"Error crítico al iniciar el lectura clientes:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
-
-
-
-
-
+                if (clientes != null)
+                {
+                    clientes.Arrancar_Clientes -= Clientes_Arrancar;
+                    clientes.Parar_Clientes -= Clientes_Parar;
+                    clientes.Error_Clientes -= Error_Clientes;
+                }
+                if (ventana_clientes != null && !ventana_clientes.IsDisposed)
+                {
+                    // Nos desuscribimos del evento para evitar que se llame a Stop() de nuevo.
+                    ventana_clientes.FormClosing -= Cerrar_ventana_clientes;
+                    ventana_clientes.Close();
+                }
+                clientes = null;
+                this.Run_clientes.Text = "Arrancar Lectura Clientes";
+                this.Run_clientes.BackColor = Color.LightGreen;
+                this.Run_clientes.Enabled = true;
+            });
+        }
 
 
     }

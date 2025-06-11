@@ -30,7 +30,8 @@
         {
             panel1 = new Panel();
             splitContainer1 = new SplitContainer();
-            run_server = new Button();
+            Run_clientes = new Button();
+            Run_server = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -59,7 +60,8 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.BackColor = SystemColors.Menu;
-            splitContainer1.Panel1.Controls.Add(run_server);
+            splitContainer1.Panel1.Controls.Add(Run_clientes);
+            splitContainer1.Panel1.Controls.Add(Run_server);
             splitContainer1.Panel1.Padding = new Padding(5);
             splitContainer1.Panel1.Paint += splitContainer1_Panel1_Paint;
             // 
@@ -71,18 +73,31 @@
             splitContainer1.SplitterDistance = 200;
             splitContainer1.TabIndex = 2;
             // 
-            // run_server
+            // Run_clientes
             // 
-            run_server.BackColor = Color.LightGreen;
-            run_server.Cursor = Cursors.Hand;
-            run_server.Dock = DockStyle.Top;
-            run_server.Location = new Point(5, 5);
-            run_server.Name = "run_server";
-            run_server.Size = new Size(190, 70);
-            run_server.TabIndex = 1;
-            run_server.Text = "Arrancar Server";
-            run_server.UseVisualStyleBackColor = false;
-            run_server.Click += run_server_click;
+            Run_clientes.BackColor = Color.LightGreen;
+            Run_clientes.Cursor = Cursors.Hand;
+            Run_clientes.Dock = DockStyle.Top;
+            Run_clientes.Location = new Point(5, 75);
+            Run_clientes.Name = "Run_clientes";
+            Run_clientes.Size = new Size(190, 70);
+            Run_clientes.TabIndex = 2;
+            Run_clientes.Text = "Arrancar Lectura Clientes";
+            Run_clientes.UseVisualStyleBackColor = false;
+            Run_clientes.Click += Run_clientes_Click;
+            // 
+            // Run_server
+            // 
+            Run_server.BackColor = Color.LightGreen;
+            Run_server.Cursor = Cursors.Hand;
+            Run_server.Dock = DockStyle.Top;
+            Run_server.Location = new Point(5, 5);
+            Run_server.Name = "Run_server";
+            Run_server.Size = new Size(190, 70);
+            Run_server.TabIndex = 1;
+            Run_server.Text = "Arrancar Server";
+            Run_server.UseVisualStyleBackColor = false;
+            Run_server.Click += Run_server_click;
             // 
             // Form1
             // 
@@ -104,6 +119,7 @@
 
         private Panel panel1;
         private SplitContainer splitContainer1;
-        private Button run_server;
+        private Button Run_server;
+        private Button Run_clientes;
     }
 }
