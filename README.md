@@ -2,7 +2,7 @@
 
 **OPCplug** es una aplicación de escritorio para Windows desarrollada en C#. Actúa como un puente o "espejo" OPC UA, permitiendo conectarse a múltiples servidores OPC UA remotos, leer un conjunto específico de nodos de cada uno y exponer todos esos datos consolidados a través de su propio servidor OPC UA local.
 
-Está construida utilizando la biblioteca **UA-.NETStandard** de la OPC Foundation, y aprovecha el uso de threads y tasks para permitir una ejecución eficiente y concurrente.
+Está construida utilizando la biblioteca **UA-.NETStandard** de la OPC Foundation, y aprovecha el uso de threads y tasks para permitir una ejecución en paralelo y reducir tiempos de lectura.
 
 Cada cliente OPC remoto se maneja mediante una tarea (Task) independiente, que mantiene una sesión activa con el servidor correspondiente y gestiona automáticamente la reconexión en caso de fallo. Por su parte, el servidor OPC UA local se ejecuta también en una tarea separada, lo que permite iniciar y detener tanto el servidor como la lectura de clientes de forma independiente.
 
