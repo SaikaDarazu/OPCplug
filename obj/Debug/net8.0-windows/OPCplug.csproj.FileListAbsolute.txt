@@ -74,7 +74,6 @@ E:\OPCplug\bin\Debug\net8.0-windows\Opc.Ua.Gds.Server.Common.dll
 E:\OPCplug\bin\Debug\net8.0-windows\Opc.Ua.Security.Certificates.dll
 E:\OPCplug\bin\Debug\net8.0-windows\Opc.Ua.Server.dll
 E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.csproj.AssemblyReference.cache
-E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.Form1.resources
 E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.csproj.GenerateResource.cache
 E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.GeneratedMSBuildEditorConfig.editorconfig
 E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.AssemblyInfoInputs.cache
@@ -87,3 +86,5 @@ E:\OPCplug\obj\Debug\net8.0-windows\refint\OPCplug.dll
 E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.pdb
 E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.genruntimeconfig.cache
 E:\OPCplug\obj\Debug\net8.0-windows\ref\OPCplug.dll
+E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.Form_inicial.resources
+E:\OPCplug\obj\Debug\net8.0-windows\OPCplug.Ventana_clientes.resources

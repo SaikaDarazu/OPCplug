@@ -192,11 +192,9 @@ namespace OPCplug.Code
 
         public void Stop()
         {
-            // Si el CancellationTokenSource existe y no se ha solicitado la cancelación todavía...
             if (_generador_Token != null && !_generador_Token.IsCancellationRequested)
             {
                  Debug.WriteLine("Recibida solicitud para detener el servidor...");
-                // ...enviamos la señal de cancelación.
                 _generador_Token.Cancel();
             }
         }

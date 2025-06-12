@@ -12,7 +12,7 @@ namespace OPCplug
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             OPCplug.Code.LeerXML.InicializarEstructura();
-            Application.Run(new Form1());
+            Application.Run(new Form_inicial());
         }
     }
 }

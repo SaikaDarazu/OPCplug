@@ -73,4 +73,3 @@ Inicia las tareas de fondo que se conectan a todos los servidores definidos en c
 El botón cambia a "Detener Lectura" mientras está activo.
 
 Ambos procesos funcionan de forma independiente y en paralelo, gracias al uso de tareas asíncronas.
-
